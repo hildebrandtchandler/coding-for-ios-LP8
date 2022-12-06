@@ -3,6 +3,7 @@
   "description": "A simple tip calculator app",
   "dir": "ltr",
   "display": "standalone",
+  "display_override": ["fullscreen", "minimal-ui"],
   "name": "tipcalc.domgarofalo",
   "orientation": "any",
   "scope": "/",
