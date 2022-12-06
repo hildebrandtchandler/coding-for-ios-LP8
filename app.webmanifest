@@ -1,20 +1,94 @@
 {
-  "short_name": "TipCalc",
-  "name": "Tip Calculator",
+  "background_color": "#ffffff",
+  "description": "A simple tip calculator app",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "tipcalc.domgarofalo",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "tipcalc.domgarofalo",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": ["food", "restaurant", "hospitality"],
+  "screenshots": [],
   "icons": [
     {
-      "src": "icons/app_icon_192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "icons/android-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
-      "src": "icons/app_icon_512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "icons/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "favicon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "icons/apple-icon-57x57.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "icons/apple-icon-60x60.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },
+    {
+      "src": "icons/apple-icon-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "icons/apple-icon-76x76.png",
+      "type": "image/png",
+      "sizes": "76x76"
+    },
+    {
+      "src": "icons/apple-icon-114x114.png",
+      "type": "image/png",
+      "sizes": "114x114"
+    },
+    {
+      "src": "icons/apple-icon-120x120.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "icons/apple-icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "icons/apple-icon-152x152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "icons/apple-icon-180x180.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/ms-icon-144x144.png"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
     }
   ],
-  "start_url": "/index.html?source=pwa",
-  "display": "fullscreen",
-  "background_color": "#FF6F6F",
-  "theme_color": "#FF6F6F"
+  "shortcuts": []
 }
