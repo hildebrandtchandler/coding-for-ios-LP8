@@ -1,17 +1,26 @@
 {
-  "background_color": "#ffffff",
+  "background_color": "#FF6F6F",
   "description": "A simple tip calculator app",
   "dir": "ltr",
   "display": "standalone",
   "display_override": ["fullscreen", "minimal-ui"],
-  "name": "tipcalc.domgarofalo",
+  "lang": "en",
+  "name": "Tip Calculator",
   "orientation": "any",
   "scope": "/",
-  "short_name": "tipcalc.domgarofalo",
+  "short_name": "TipCalc",
   "start_url": "/",
   "theme_color": "#ffffff",
   "categories": ["food", "restaurant", "hospitality"],
-  "screenshots": [],
+  "screenshots": [
+    {
+      "src": "img/tip-calc.png",
+      "sizes": "494x778",
+      "type": "image/png",
+      "platform": "tall",
+      "label": "Tip Calculator"
+    }
+  ],
   "icons": [
     {
       "src": "icons/android-icon-192x192.png",
