@@ -4,6 +4,7 @@
   "dir": "ltr",
   "display": "standalone",
   "display_override": ["fullscreen", "minimal-ui"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "lang": "en",
   "name": "Tip Calculator",
   "orientation": "any",
@@ -23,14 +24,15 @@
   ],
   "icons": [
     {
+      "src": "icons/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"      
+    },
+    {
       "src": "icons/android-icon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "icons/android-chrome-512x512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     },
     {
       "src": "favicon-32x32.png",
