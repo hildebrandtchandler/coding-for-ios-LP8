@@ -20,7 +20,7 @@
       "url": "https://itunes.apple.com/app/example-app1/id123456789"
     }
   ],
-  "share_target": 
+  "share_target": [
   {
     "action": "/shared-content-receiver/",
     "method": "GET",
@@ -29,7 +29,8 @@
       "text": "description",
       "url": "link"
     }
-  },
+  }
+  ],
   "short_name": "TipCalc",
   "start_url": "/",
   "theme_color": "#ffffff",
