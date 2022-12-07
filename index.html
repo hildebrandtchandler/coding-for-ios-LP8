@@ -42,7 +42,7 @@
 
       });
       // then register our service worker
-      navigator.serviceWorker.register('./sw.js')
+      navigator.serviceWorker.register('/sw.js')
         .then(function (reg) {
           // display a success message
           console.log(`Service Worker Registration (Scope: ${reg.scope})`);
