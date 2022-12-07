@@ -9,6 +9,27 @@
   "name": "Tip Calculator",
   "orientation": "any",
   "scope": "/",
+  "related_applications": 
+  [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.example.app1",
+      "id": "com.example.app1"
+    }, {
+      "platform": "itunes",
+      "url": "https://itunes.apple.com/app/example-app1/id123456789"
+    }
+  ],
+  "share_target": 
+  {
+    "action": "/shared-content-receiver/",
+    "method": "GET",
+    "params": {
+      "title": "name",
+      "text": "description",
+      "url": "link"
+    }
+  },
   "short_name": "TipCalc",
   "start_url": "/",
   "theme_color": "#ffffff",
