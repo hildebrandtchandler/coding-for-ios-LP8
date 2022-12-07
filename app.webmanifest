@@ -13,6 +13,7 @@
   "start_url": "/",
   "theme_color": "#ffffff",
   "categories": ["food", "restaurant", "hospitality"],
+  "prefer_related_applications": true,
   "screenshots": [
     {
       "src": "img/tip-calc.png",
