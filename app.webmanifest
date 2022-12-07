@@ -8,7 +8,7 @@
   "lang": "en",
   "name": "Tip Calculator",
   "orientation": "any",
-  "scope": "/",
+  "scope": "https://hildebrandtchandler.github.io/coding-for-ios-LP8/",
   "related_applications": 
   [
     {
@@ -32,7 +32,7 @@
   }
   ],
   "short_name": "TipCalc",
-  "start_url": "/",
+  "start_url": "https://hildebrandtchandler.github.io/coding-for-ios-LP8/",
   "theme_color": "#ffffff",
   "categories": ["food", "restaurant", "hospitality"],
   "prefer_related_applications": true,
