@@ -1,83 +1,48 @@
-// This is the "Offline page" service worker
+/***************************************************************************
+ Hey, I thought we agreed that we weren't going to dig into Service Workers 
+ in this chapter, what gives?  OK, I'll explain the contents of this file 
+ below, but you can also find more information in the following chapters 
+ (where I cover Service Workers) or here: 
+ https://developers.google.com/web/ilt/pwa/introduction-to-service-worker
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+ Since this is a service worker for an app I'm using to just illustrate 
+ how to how to use an web manifest file to install it, it doesn't actually
+ do anything. All it does is register event listeners for the Service 
+ Worker events then, in those event listeners, it dumps the event object
+ to the console. That's really it.
 
-const CACHE = "pwabuilder-page";
+ In the chapters that follow, I'll show how to do file caching, deal with 
+ service worker upgrades, and other cool stuff. 
+***************************************************************************/
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "ToDo-replace-this-name.html";
-
-const status = await navigator.permissions.query({
-    name: 'periodic-background-sync',
-  });
-  if (status.state === 'granted') {
-    // Periodic background sync can be used.
-  } else {
-    // Periodic background sync cannot be used.
-  }
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
+self.addEventListener('install', event => {
+    // fires when the browser installs the app
+    // here we're just logging the event and the contents
+    // of the object passed to the event. the purpose of this event
+    // is to give the service worker a place to setup the local 
+    // environment after the installation completes.
+    console.log(`Event fired: ${event.type}`);
+    console.dir(event);
 });
 
-self.addEventListener('install', async (event) => {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.add(offlineFallbackPage))
-  );
+self.addEventListener('activate', event => {
+    // fires after the service worker completes its installation. 
+    // It's a place for the service worker to clean up from previous 
+    // service worker versions
+    console.log(`Event fired: ${event.type}`);
+    console.dir(event);
 });
 
-if (workbox.navigationPreload.isSupported()) {
-  workbox.navigationPreload.enable();
-}
-
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse;
-
-        if (preloadResp) {
-          return preloadResp;
-        }
-
-        const networkResp = await fetch(event.request);
-        return networkResp;
-      } catch (error) {
-
-        const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPage);
-        return cachedResp;
-      }
-    })());
-  }
+self.addEventListener('fetch', event => {
+    // Fires whenever the app requests a resource (file or data)
+    // normally this is where the service worker would check to see
+    // if the requested resource is in the local cache before going
+    // to the server to get it. There's a whole chapter in the book
+    // covering different cache strategies, so I'm not going to say 
+    // any more about this here
+    console.log(`Fetching ${event.request.url}`);
+    // console.dir(event.request);
+    // Next, go get the requested resource from the network, 
+    // nothing fancy going on here.
+    event.respondWith(fetch(event.request));
 });
-
-navigator.serviceWorker.ready.then(async registration => {
-    try {
-      await registration.periodicSync.register('get-cats', { minInterval: 24 * 60 * 60 * 1000 });
-      console.log(Periodic background sync registered.');
-    } catch (err) {
-      console.error(err.name, err.message);
-    }
-  });
-
-  const registration = await navigator.serviceWorker.ready;
-if ('periodicSync' in registration) {
-  const tags = await registration.periodicSync.getTags();
-  // Only update content if sync isn't set up.
-  if (!tags.includes('content-sync')) {
-    updateContentOnPageLoad();
-  }
-} else {
-  // If periodic background sync isn't supported, always update.
-  updateContentOnPageLoad();
-}
-
-self.addEventListener('periodicsync', (event) => {
-    if (event.tag === 'content-sync') {
-      event.waitUntil(syncContent());
-    }
-  });
