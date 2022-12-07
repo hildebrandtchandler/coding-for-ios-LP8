@@ -118,7 +118,8 @@
       "sizes": "180x180"
     },
     {
-      "src": "/ms-icon-144x144.png"
+      "src": "/ms-icon-144x144.png",
+      "type": "image/png"
     },
     {
       "src": "/favicon.ico",

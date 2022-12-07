@@ -14,6 +14,17 @@
  In the chapters that follow, I'll show how to do file caching, deal with 
  service worker upgrades, and other cool stuff. 
 ***************************************************************************/
+const staticCacheName = 'site-static';
+const assets = [
+    '/',
+    'index.html',
+    '/js/main.js',
+    '/css/main.css',
+    '/css/normalize.css',
+    '/img/tc-app_icon_512x512.png',
+    '/img/tip-200.png',
+    '/img/tip-1200.png'
+];
 
 self.addEventListener('install', event => {
     // fires when the browser installs the app
@@ -23,6 +34,12 @@ self.addEventListener('install', event => {
     // environment after the installation completes.
     console.log(`Event fired: ${event.type}`);
     console.dir(event);
+    event.waitUntil(
+        caches.open(staticCacheName).then(cache => {
+          console.log('cashing shell assets');
+          cache.addAll(assets);
+        })
+      );
 });
 
 self.addEventListener('activate', event => {
