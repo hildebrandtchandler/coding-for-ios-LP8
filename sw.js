@@ -32,14 +32,15 @@ self.addEventListener('install', event => {
     // of the object passed to the event. the purpose of this event
     // is to give the service worker a place to setup the local 
     // environment after the installation completes.
-    console.log(`Event fired: ${event.type}`);
-    console.dir(event);
     event.waitUntil(
         caches.open(staticCacheName).then(cache => {
           console.log('cashing shell assets');
           cache.addAll(assets);
         })
       );
+    console.log(`Event fired: ${event.type}`);
+    console.dir(event);
+    
 });
 
 self.addEventListener('activate', event => {
@@ -61,5 +62,12 @@ self.addEventListener('fetch', event => {
     // console.dir(event.request);
     // Next, go get the requested resource from the network, 
     // nothing fancy going on here.
-    event.respondWith(fetch(event.request));
+    event.respondWith(fetch(event.request)
+    .then((cachedResponse) => {
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+
+        return fetch(event.request);
+    }));
 });
