@@ -16,8 +16,8 @@
 ***************************************************************************/
 const staticCacheName = 'site-static';
 const assets = [
-    '/',
-    'index.html',
+    './',
+    './index.html',
     './js/main.js',
     './css/main.css',
     './css/normalize.css',
