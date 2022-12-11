@@ -18,12 +18,10 @@ const staticCacheName = 'site-static';
 const assets = [
     '/',
     'index.html',
-    '/js/main.js',
-    '/css/main.css',
-    '/css/normalize.css',
-    '/img/tc-app_icon_512x512.png',
-    '/img/tip-200.png',
-    '/img/tip-1200.png'
+    './js/main.js',
+    './css/main.css',
+    './css/normalize.css',
+    './img/tip-200.png'
 ];
 
 self.addEventListener('install', event => {
@@ -33,14 +31,11 @@ self.addEventListener('install', event => {
     // is to give the service worker a place to setup the local 
     // environment after the installation completes.
     event.waitUntil(
-        caches.open(staticCacheName).then(cache => {
-          console.log('cashing shell assets');
-          cache.addAll(assets);
-        })
-      );
+        caches.open(staticCacheName)
+            .then((cache) => cache.addAll(assets))
+    );
     console.log(`Event fired: ${event.type}`);
     console.dir(event);
-    
 });
 
 self.addEventListener('activate', event => {
@@ -51,23 +46,18 @@ self.addEventListener('activate', event => {
     console.dir(event);
 });
 
-self.addEventListener('fetch', event => {
-    // Fires whenever the app requests a resource (file or data)
-    // normally this is where the service worker would check to see
-    // if the requested resource is in the local cache before going
-    // to the server to get it. There's a whole chapter in the book
-    // covering different cache strategies, so I'm not going to say 
-    // any more about this here
-    console.log(`Fetching ${event.request.url}`);
-    // console.dir(event.request);
-    // Next, go get the requested resource from the network, 
-    // nothing fancy going on here.
-    event.respondWith(fetch(event.request)
-    .then((cachedResponse) => {
-        if (cachedResponse) {
+// When a resource is requested, check the cache first before going to the network
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+      caches.match(event.request)
+        .then((cachedResponse) => {
+          // If the resource is in the cache, return it
+          if (cachedResponse) {
             return cachedResponse;
-        }
-
-        return fetch(event.request);
-    }));
-});
+          }
+  
+          // Otherwise, go to the network
+          return fetch(event.request);
+        })
+    );
+  });
